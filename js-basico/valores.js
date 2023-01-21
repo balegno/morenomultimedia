@@ -1,7 +1,7 @@
 class dispo {
-    constructor(id, producto, marca, modelo, precio){
+    constructor(id, nombre, marca, modelo, precio){
         this.id = id,
-        this.producto = producto,
+        this.nombre = nombre,
         this.marca = marca,
         this.modelo = modelo,
         this.precio = precio
@@ -9,7 +9,7 @@ class dispo {
     }
     
     mostrarInfoDispo(){
-        console.log(`El producto es ${this.marca}, de la marca ${this.producto}, modelo ${this.modelo} y su precio es $${this.precio}`)
+        console.log(`El producto es ${this.marca}, de la marca ${this.nombre}, modelo ${this.modelo} y su precio es $${this.precio}`)
     }
 }
 //INSTANCIACION DE OBJETOS- ESCRIBIR EN ORDEN
@@ -34,13 +34,13 @@ const dispositivos = [dispositivos1, dispositivos2, dispositivos3, dispositivos4
 
 //FUNCTIONS AGREGAR AL ARRAY
 function agregarProducto(){
-    let productoIngresado = prompt("Ingrese la marca")
-    let marcaIngresado = prompt("Ingrese el nombre")
+    let marcaIngresada = prompt("Ingrese la marca")
+    let nombreIngresado = prompt("Ingrese el nombre")
     let modeloIngrersado = prompt("Ingrese el modelo")
     let precioIngresado = parseInt(prompt("Ingrese el precio"))
-    
 
-    const produNuevo = new dispo(dispositivos.length+1, productoIngresado, marcaIngresado, modeloIngrersado, precioIngresado)
+
+    const produNuevo = new dispo(dispositivos.length+1, marcaIngresada, nombreIngresado, modeloIngrersado, precioIngresado)
     console.log(produNuevo)
     
     // //SUMA AL ARRAY
@@ -49,7 +49,7 @@ function agregarProducto(){
 }
 
 function eliminarDispo(array){
-    console.log("A partir del catalogo ingrese el id que desea eliminar")
+    console.log("Con el catalogo, ingrese el ID que desea eliminar")
     for(let elemOff of array){
         console.log(`${elemOff.id} - ${elemOff.marca} de la marca ${elemOff.producto}`)
     }
@@ -67,18 +67,18 @@ function eliminarDispo(array){
 function verCatalogo(array){
     console.log("Bienvenido! Nuestro catalogo es:")
     array.forEach((dispositivos)=>{
-        console.log(dispositivos.id, dispositivos.producto, dispositivos.marca, dispositivos.modelo, dispositivos.precio)
+        console.log(dispositivos.id, dispositivos.nombre, dispositivos.marca, dispositivos.modelo, dispositivos.precio)
     })
 }
 
 //BUSCAR
 function buscarPorMarca(array){
-    let marcaBuscado = prompt("Ingrese el nombre del producto que desea buscar")
-    let marcaEncontrado = array.find(
-        (buscMarc)=> buscMarc.marca.toLowerCase() == marcaBuscado.toLowerCase()
+    let marcaBuscada = prompt("Ingrese la Marca del producto que desea buscar")
+    let marcaEncontrada = array.find(
+        (buscMarc)=> buscMarc.marca.toLowerCase() == marcaBuscada.toLowerCase()
         )
-    if(marcaEncontrado == undefined){
-        console.log(`El producto ${marcaBuscado} no está en stock`)
+    if(marcaEncontrada == undefined){
+        console.log(`El producto ${marcaBuscada} no está en stock`)
     }
     else{
         console.log(marcaEncontrado) 
@@ -90,7 +90,7 @@ function buscarPorProducto(arr){
     let productoBuscado = prompt("Ingrese el nombre de la marca que está buscando")
     let busqueda = arr.filter((productos)=> productos.marca.toLowerCase() == productoBuscado.toLowerCase())
     if(busqueda.length == 0){
-        console.log(`No hay coincidencias para la marca ${productoBuscado}`)
+        console.log(`El producto ${productoBuscado} no esta en Stock.`)
     }else{
         console.log(busqueda)
         verCatalogo(busqueda)
@@ -153,13 +153,13 @@ function menu(){
 
 function preguntarOpcion(salir){
     let opcionIngresada = parseInt(prompt(`Opciónes:
-        1 - Datos personales:
-        2 - Agregar Dispositivo:
-        3 - Borrar Dispositivo:
-        4 - Consultar catálogo:
-        5 - Encontrar por Nombre:
-        6 - Buscar Productos de la misma marca:
-        7 - Ordenar Productos:
+        1 - Datos personales
+        2 - Agregar Dispositivo
+        3 - Borrar Dispositivo
+        4 - Consultar catálogo
+        5 - Encontrar por Nombre
+        6 - Buscar Productos
+        7 - Ordenar Productos
         0 - Salir del menu`))
     
         switch(opcionIngresada){
@@ -180,23 +180,18 @@ function preguntarOpcion(salir){
                 agregarProducto()
             break
             case 3:
-                //borrar libro
                 eliminarDispo(dispositivos)
             break
             case 4:
-                //ver catalogo
                 verCatalogo(dispositivos)
             break
             case 5:
-                //buscar por titulo
                 buscarPorProducto(dispositivos)
             break
             case 6:
-                //buscar por autor
                 buscarPorProducto(dispositivos)
             break
             case 7:
-                //ordenar
                 ordenar(dispositivos)
                 
             break
