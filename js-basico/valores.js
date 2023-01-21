@@ -1,6 +1,5 @@
 class dispo {
     constructor(id, producto, marca, modelo, precio){
-        //propiedades o atributos de nuestra clase
         this.id = id,
         this.producto = producto,
         this.marca = marca,
@@ -8,9 +7,9 @@ class dispo {
         this.precio = precio
 
     }
-    //métodos
+    
     mostrarInfoDispo(){
-        console.log(`El producto es ${this.producto}, de la marca ${this.marca}, modelo ${this.modelo} y su precio es $${this.precio}`)
+        console.log(`El producto es ${this.marca}, de la marca ${this.producto}, modelo ${this.modelo} y su precio es $${this.precio}`)
     }
 }
 //INSTANCIACION DE OBJETOS- ESCRIBIR EN ORDEN
@@ -33,7 +32,7 @@ const dispositivos = [dispositivos1, dispositivos2, dispositivos3, dispositivos4
 
 
 
-//FUNCTIONS proyecto:
+//FUNCTIONS AGREGAR AL ARRAY
 function agregarProducto(){
     let productoIngresado = prompt("Ingrese la marca")
     let marcaIngresado = prompt("Ingrese el nombre")
@@ -44,16 +43,15 @@ function agregarProducto(){
     const produNuevo = new dispo(dispositivos.length+1, productoIngresado, marcaIngresado, modeloIngrersado, precioIngresado)
     console.log(produNuevo)
     
-    // //sumarlo a estanteria
+    // //SUMA AL ARRAY
     dispositivos.push(produNuevo) 
     produNuevo.mostrarInfoDispo()
-    // console.log(stockProdu)
 }
 
 function eliminarDispo(array){
     console.log("A partir del catalogo ingrese el id que desea eliminar")
-    for(let elem of array){
-        console.log(`${elem.id} - ${elem.marca} de la marca ${elem.producto}`)
+    for(let elemOff of array){
+        console.log(`${elemOff.id} - ${elemOff.marca} de la marca ${elemOff.producto}`)
     }
     let idEliminar = parseInt(prompt("Ingrese el id a eliminar"))
 
@@ -90,7 +88,7 @@ function buscarPorMarca(array){
 //FILTER 
 function buscarPorProducto(arr){
     let productoBuscado = prompt("Ingrese el nombre de la marca que está buscando")
-    let busqueda = arr.filter((productos)=> productos.producto.toLowerCase() == productoBuscado.toLowerCase())
+    let busqueda = arr.filter((productos)=> productos.marca.toLowerCase() == productoBuscado.toLowerCase())
     if(busqueda.length == 0){
         console.log(`No hay coincidencias para la marca ${productoBuscado}`)
     }else{
@@ -100,7 +98,6 @@ function buscarPorProducto(arr){
 
 }
 
-    // console.log(estanteria)
 function ordenarMenorMayor(array){
         const menorMayor = [].concat(array)
         menorMayor.sort((a,b) => a.precio - b.precio)
@@ -113,7 +110,7 @@ function ordenarMayorMenor(arr){
     })
     verCatalogo(mayorMenor)
 }
-function ordenarAlfabeticamenteNombre(array){
+function ordenarAlfabeticamenteTitulo(array){
     const ordAlfabeticamente = [].concat(array)
     ordAlfabeticamente.sort((a,b) => {
         if(a.nombre > b.nombre) {
@@ -155,11 +152,11 @@ function menu(){
 } 
 
 function preguntarOpcion(salir){
-    let opcionIngresada = parseInt(prompt(`Ingrese la opción deseada
-        1 - Datos personales
-        2 - Agregar Dispositivo
-        3 - Borrar Dispositivo
-        4 - Consultar catálogo
+    let opcionIngresada = parseInt(prompt(`Opciónes:
+        1 - Datos personales:
+        2 - Agregar Dispositivo:
+        3 - Borrar Dispositivo:
+        4 - Consultar catálogo:
         5 - Encontrar por Nombre:
         6 - Buscar Productos de la misma marca:
         7 - Ordenar Productos:
@@ -192,7 +189,7 @@ function preguntarOpcion(salir){
             break
             case 5:
                 //buscar por titulo
-                buscarPorNombre(dispositivos)
+                buscarPorProducto(dispositivos)
             break
             case 6:
                 //buscar por autor
@@ -204,7 +201,7 @@ function preguntarOpcion(salir){
                 
             break
             case 0:
-                console.log(`${nombre} Gracias por visitarnos, te esperamos la proxima`)
+                console.log(`Gracias por visitarnos, te esperamos la proxima`)
                 salir = true
                 return salir
             break
