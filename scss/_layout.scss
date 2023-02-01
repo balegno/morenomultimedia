@@ -1,0 +1,17 @@
+#grilla{
+    display: grid;
+    grid-template-areas: 
+    "productos productos productos"
+    "banner banner banner";
+    grid-template-columns: repeat(4,1fr);
+    justify-items: center;
+    row-gap: 5rem;
+}
+
+#padreProductos{
+    grid-area: productos;
+}
+
+#banner{
+    grid-area: banner;
+}

@@ -81,7 +81,7 @@ function buscarPorMarca(array){
         console.log(`El producto ${marcaBuscada} no está en stock`)
     }
     else{
-        console.log(marcaEncontrado) 
+        console.log(marcaEncontrada) 
     }
 }
 
@@ -166,7 +166,7 @@ function preguntarOpcion(salir){
             case 1:
                 let nombre = prompt("Ingrese el nombre")
                 let fecha = prompt("Ingrese el año de nacimiento")
-                let provincia = prompt("Desde que provincia nos visitas?")
+                let provincia = parseInt(prompt("Desde que provincia nos visitas?"))
                 let edad = 2023 - fecha
 
         function saludarUsuario(){
@@ -193,7 +193,7 @@ function preguntarOpcion(salir){
             break
             case 7:
                 ordenar(dispositivos)
-                
+
             break
             case 0:
                 console.log(`Gracias por visitarnos, te esperamos la proxima`)
@@ -206,4 +206,41 @@ function preguntarOpcion(salir){
         }
 }
 
-menu()
+// menu()
+
+
+
+// let listaPaises = document.getElementById("listaPaises")
+// listaPaises.innerHTML += `<li class="paises">Costa rica</li>
+//     <li class="paises">Cuba</li>`
+
+// let nuevoLi = document.createElement("li")
+// nuevoLi.innerText = "Medellin"
+
+// nuevoLi.className = "CiudadNueva"
+
+// listaPaises.append(nuevoLi)
+
+
+// // let listaCosas = document.getElementById("cualquierCosa")
+// // listaCosas.innerHTML += `<li>Axolote</li>`
+
+
+
+let stockProduc = document.getElementById("padreProductos")
+for(let dispos of dispositivos){
+    let nuevosProductos = document.createElement("div")
+    nuevosProductos.innerHTML = 
+    `<div id="${dispos.id}" class="card" style="width: 18rem;">
+        <div class="cardBody">
+            <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
+            <p>Marca: ${dispos.marca}</p>
+            <p>Precio: ${dispos.precio}</p>
+        <button id="" class="btn btn-outline-success">Agregar al carrito</button>
+    </div>
+</div>`
+stockProduc.appendChild(nuevosProductos)
+}
+
+// let temperatura = parseInt(prompt(`Que temperatura hace en tu ciudad?`))
+// temperatura > 30 ? alert ("Dia caluros!") : alert("Dia agradable")

@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: $primario; 
+}
+
+html {
+    font-size: 62.5%;
+}
+
+// BODY
+
+body{
+    background-color: rgb(50, 50, 156);
+}
+
+img{
+    max-width: 100%;
+}
+h1{
+    font-size: $fuente-grande;
+    text-align: center;
+    font-family: $fuente-titulo;
+}
+h2 {
+    font-size: $fuente-mediana;
+    text-align: center;
+    font-family: $fuente-titulo;
+}
+h3 {
+    font-size: $fuente-chica;
+    text-align: small;
+    font-family: $fuente-titulo;
+}
+p {
+    font-size: $fuente-muy-chica;
+    text-align: center;
+    font-family: $fuente-parrafo;
+}
+
+// EXTENDS
+.hover {
+    transform: scale(1);
+}
+
+// MIXIN
+@mixin flex-colum-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@mixin flex-colum{
+    display: flex;
+    flex-direction: column;
+}
+@mixin flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+@mixin flex-row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+@mixin margin {
+    margin: -6rem 4rem 1rem;
+}
