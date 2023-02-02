@@ -210,22 +210,6 @@ function preguntarOpcion(salir){
 
 
 
-// let listaPaises = document.getElementById("listaPaises")
-// listaPaises.innerHTML += `<li class="paises">Costa rica</li>
-//     <li class="paises">Cuba</li>`
-
-// let nuevoLi = document.createElement("li")
-// nuevoLi.innerText = "Medellin"
-
-// nuevoLi.className = "CiudadNueva"
-
-// listaPaises.append(nuevoLi)
-
-
-// // let listaCosas = document.getElementById("cualquierCosa")
-// // listaCosas.innerHTML += `<li>Axolote</li>`
-
-
 
 let stockProduc = document.getElementById("padreProductos")
 for(let dispos of dispositivos){

@@ -1,13 +1,3 @@
-// .productos {
-//     width: 23rem;
-//     border: solid 2px $secundario;
-//     border-radius: 2rem;
-//     @include flex-colum-center;
-//     padding: 1rem;
-//     margin: 1rem;
-//     background-color: violet;
-// }
-
 #padreProductos{
     display: grid;
     grid-template-columns: repeat(4,1fr);

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: #1d1717;
+  color: #668dc0;
 }
 
 html {
@@ -73,7 +73,7 @@ p {
   row-gap: 1rem;
   height: 26rem;
   width: 23rem;
-  border: solid 2px #384bb4;
+  border: solid 2px #0f1c30;
   border-radius: 3rem;
   padding: 2rem;
   display: flex;
