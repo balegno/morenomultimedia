@@ -1,10 +1,11 @@
 class dispo {
-    constructor(id, nombre, marca, modelo, precio){
+    constructor(id, nombre, marca, modelo, precio, imagen){
         this.id = id,
         this.nombre = nombre,
         this.marca = marca,
         this.modelo = modelo,
-        this.precio = precio
+        this.precio = precio,
+        this.imagen = imagen
 
     }
     
@@ -24,23 +25,37 @@ const dispositivos4 = new dispo(4,"Monitor","Samsung", "As154", 1400)
 
 const dispositivos5 = new dispo(5,"Mouse", "Logitech", "M535", 2200)
 
-const dispositivos6 = new dispo(6, "Teclados", "Logitech", "K380", 2000)
+const dispositivos6 = new dispo(6, "Teclados", "Logitech", "K380", 2000, "logi380")
+
+const dispositivos7 = new dispo(7,"Mouse", "Logitech", "M535", 2200)
+
+const dispositivos8 = new dispo(8,"Mouse", "Logitech", "M535", 2200)
+
+const dispositivos9 = new dispo(9,"Mouse", "Logitech", "M535", 2200)
+
+const dispositivos10 = new dispo(10,"Mouse", "Logitech", "M535", 2200)
+
+const dispositivos11 = new dispo(11,"Mouse", "Logitech", "M535", 2200)
+
+const dispositivos12 = new dispo(12,"Mouse", "Logitech", "M535", 2200)
+
+const dispositivos13 = new dispo(13,"Mouse", "Logitech", "M535", 2200)
 
 
 //ARRAY
-const dispositivos = [dispositivos1, dispositivos2, dispositivos3, dispositivos4, dispositivos5, dispositivos6]
+const dispositivos = [dispositivos1, dispositivos2, dispositivos3, dispositivos4, dispositivos5, dispositivos6, dispositivos7, dispositivos8, dispositivos9, dispositivos10, dispositivos11, dispositivos12, dispositivos13]
 
 
 
 //FUNCTIONS AGREGAR AL ARRAY
-function agregarProducto(){
-    let marcaIngresada = prompt("Ingrese la marca")
-    let nombreIngresado = prompt("Ingrese el nombre")
-    let modeloIngrersado = prompt("Ingrese el modelo")
-    let precioIngresado = parseInt(prompt("Ingrese el precio"))
+function agregarProducto(array){
+    let marcaIngresada = document.getElementById("marcaInput")
+    let nombreIngresado = document.getElementById("nombreInput")
+    let modeloIngrersado = document.getElementById("modeloInput")
+    let precioIngresado = document.getElementById("precioInput")
 
 
-    const produNuevo = new dispo(dispositivos.length+1, marcaIngresada, nombreIngresado, modeloIngrersado, precioIngresado)
+    const produNuevo = new dispo(array.length+1, marcaIngresada.value, nombreIngresado.value, modeloIngrersado.value, precioIngresado.value, "productonuevo.jpg")
     console.log(produNuevo)
     
     // //SUMA AL ARRAY
@@ -212,19 +227,24 @@ function preguntarOpcion(salir){
 
 
 let stockProduc = document.getElementById("padreProductos")
-for(let dispos of dispositivos){
-    let nuevosProductos = document.createElement("div")
-    nuevosProductos.innerHTML = 
-    `<div id="${dispos.id}" class="card" style="width: 18rem;">
-        <div class="cardBody">
-            <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
-            <p>Marca: ${dispos.marca}</p>
-            <p>Precio: ${dispos.precio}</p>
-        <button id="" class="btn btn-outline-success">Agregar al carrito</button>
-    </div>
-</div>`
-stockProduc.appendChild(nuevosProductos)
+function mostrarInfoDispo(array){
+    stockProduc.innerHTML =""
+    for(let dispos of dispositivos){
+        let nuevosProductos = document.createElement("div")
+        nuevosProductos.innerHTML = 
+        `<div id="${dispos.id}" class="card" alt="" style="height: 25rem; width: 20rem;">
+        <img class="card-img-top img-fluid" src="assets/${dispos.imagen}" alt="${dispos.nombre} de ${dispos.marca}"
+            <div class="cardBody">
+                <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
+                <p>Marca: ${dispos.marca}</p>
+                <p>Precio: ${dispos.precio}</p>
+            <button id="" class="btn btn-outline-success">Agregar al carrito</button>
+        </div>
+    </div>`
+    stockProduc.appendChild(nuevosProductos)
+    }
 }
 
-// let temperatura = parseInt(prompt(`Que temperatura hace en tu ciudad?`))
-// temperatura > 30 ? alert ("Dia caluros!") : alert("Dia agradable")
+
+mostrarInfoDispo(dispositivos)
+

@@ -11,7 +11,24 @@ html {
 }
 
 body {
-  background-color: rgb(50, 50, 156);
+  background-color: #c0d0ef;
+}
+
+.nav-link {
+  background-color: #0f1c30;
+  color: aliceblue;
+  font-size: 1.5rem;
+  height: 3rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+  margin: 0.2rem 0.5rem;
+}
+.navbar-toggler {
+  margin-right: 2rem;
+}
+.navbar-brand {
+  font-size: 3rem;
 }
 
 img {
@@ -42,7 +59,7 @@ p {
   font-family: "Montserrat", sans-serif;
 }
 
-.hover {
+.hover, .nav-link:hover, .navbar-toggler:hover {
   transform: scale(1);
 }
 
@@ -79,6 +96,10 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.navbar {
+  color: #ffffff;
 }
 
 /*# sourceMappingURL=styles.css.map */
