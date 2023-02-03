@@ -48,19 +48,27 @@ const dispositivos = [dispositivos1, dispositivos2, dispositivos3, dispositivos4
 
 
 //FUNCTIONS AGREGAR AL ARRAY
+let guardarProductoBtn = document.getElementById("guardarProductoBtn")
+
+guardarProductoBtn.addEventListener("click", ()=>{agregarProducto(dispositivos)
+console.log("guardar funca")})
+
 function agregarProducto(array){
-    let marcaIngresada = document.getElementById("marcaInput")
     let nombreIngresado = document.getElementById("nombreInput")
+    let marcaIngresada = document.getElementById("marcaInput")
     let modeloIngrersado = document.getElementById("modeloInput")
     let precioIngresado = document.getElementById("precioInput")
 
 
-    const produNuevo = new dispo(array.length+1, marcaIngresada.value, nombreIngresado.value, modeloIngrersado.value, precioIngresado.value, "productonuevo.jpg")
+    const produNuevo = new dispo(array.length+1, nombreIngresado.value, marcaIngresada.value, modeloIngrersado.value, precioIngresado.value, "productonuevo.jpg")
     console.log(produNuevo)
     
     // //SUMA AL ARRAY
-    dispositivos.push(produNuevo) 
-    produNuevo.mostrarInfoDispo()
+    // dispositivos.push(produNuevo) 
+    // produNuevo.mostrarInfoDispo()
+
+    array.push(produNuevo)
+    mostrarInfoDispo(array)
 }
 
 function eliminarDispo(array){
@@ -229,8 +237,12 @@ function preguntarOpcion(salir){
 let stockProduc = document.getElementById("padreProductos")
 function mostrarInfoDispo(array){
     stockProduc.innerHTML =""
+
+
     for(let dispos of dispositivos){
         let nuevosProductos = document.createElement("div")
+        
+        nuevosProductos.classList.add("col-12","col-md-6", "col-lg-4")
         nuevosProductos.innerHTML = 
         `<div id="${dispos.id}" class="card" alt="" style="height: 25rem; width: 20rem;">
         <img class="card-img-top img-fluid" src="assets/${dispos.imagen}" alt="${dispos.nombre} de ${dispos.marca}"
