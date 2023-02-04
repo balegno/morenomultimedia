@@ -53,14 +53,17 @@ h2 {
     font-family: $fuente-titulo;
 }
 h3 {
-    font-size: $fuente-chica;
+    font-size: $fuente-mediana;
     text-align: small;
     font-family: $fuente-titulo;
 }
 p {
-    font-size: $fuente-muy-chica;
+    font-size: $fuente-chica;
     text-align: center;
     font-family: $fuente-parrafo;
+    .card{
+        font-size: $fuente-muy-chica;
+    }
 }
 
 
@@ -95,4 +98,15 @@ p {
 
 @mixin margin {
     margin: -6rem 4rem 1rem;
+}
+
+.card{
+    margin: 5rem 2rem;
+}
+
+#banner{
+    margin: 5rem;
+    background-color: $secundario;
+    width: 80%;
+    height: 100px;
 }

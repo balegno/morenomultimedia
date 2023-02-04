@@ -48,19 +48,33 @@ h2 {
 }
 
 h3 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: small;
   font-family: "Roboto Mono", monospace;
 }
 
 p {
-  font-size: 1rem;
+  font-size: 3rem;
   text-align: center;
   font-family: "Montserrat", sans-serif;
+}
+p .card {
+  font-size: 1rem;
 }
 
 .hover, .nav-link:hover, .navbar-toggler:hover {
   transform: scale(1);
+}
+
+.card {
+  margin: 5rem 2rem;
+}
+
+#banner {
+  margin: 5rem;
+  background-color: #0f1c30;
+  width: 80%;
+  height: 100px;
 }
 
 #padreProductos {
