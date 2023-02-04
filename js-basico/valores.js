@@ -1,3 +1,9 @@
+// DOM
+let guardarProductoBtn = document.getElementById("guardarProductoBtn")
+let botonLightMode =document.getElementById("botonLightMode")
+let botonDarkMode =document.getElementById("botonDarkMode")
+
+
 class dispo {
     constructor(id, nombre, marca, modelo, precio, imagen){
         this.id = id,
@@ -52,10 +58,8 @@ const dispositivos = [dispositivos1, dispositivos2, dispositivos3, dispositivos4
 
 
 //FUNCTIONS AGREGAR AL ARRAY
-let guardarProductoBtn = document.getElementById("guardarProductoBtn")
 
-guardarProductoBtn.addEventListener("click", ()=>{agregarProducto(dispositivos)
-console.log("guardar funca")})
+guardarProductoBtn.addEventListener("click", ()=>{agregarProducto(dispositivos)})
 
 function agregarProducto(array){
     let nombreIngresado = document.getElementById("nombreInput")
@@ -64,15 +68,16 @@ function agregarProducto(array){
     let precioIngresado = document.getElementById("precioInput")
 
 
-    const produNuevo = new dispo(array.length+1, nombreIngresado.value, marcaIngresada.value, modeloIngrersado.value, precioIngresado.value, "productonuevo.jpg")
-    console.log(produNuevo)
-    
-    // //SUMA AL ARRAY
-    // dispositivos.push(produNuevo) 
-    // produNuevo.mostrarInfoDispo()
+    const produNuevo = new dispo(array.length+1, nombreIngresado.value, marcaIngresada.value, modeloIngrersado.value, precioIngresado.value, "productoNuevo.jpg")
+
 
     array.push(produNuevo)
     mostrarInfoDispo(array)
+
+    nombreIngresado.value=""    
+    marcaIngresada.value=""   
+    modeloIngrersado.value=""
+    precioIngresado.value=""
 }
 
 function eliminarDispo(array){
@@ -248,19 +253,64 @@ function mostrarInfoDispo(array){
         
         nuevosProductos.classList.add("col-12","col-md-6", "col-lg-4")
         nuevosProductos.innerHTML = 
-        `<div id="${dispos.id}" class="card" alt="" style="height: 25rem; width: 20rem;">
-        <img class="card-img-top img-fluid" src="assets/${dispos.imagen}" alt="${dispos.nombre} de ${dispos.marca}"
-            <div class="cardBody">
-                <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
-                <p>Marca: ${dispos.marca}</p>
-                <p>Precio: ${dispos.precio}</p>
-            <button id="" class="btn btn-outline-success">Agregar al carrito</button>
+        `<div id="${dispos.id}" class="card" alt="" style="height: 416px; width: 252px;">
+        <img src="assets/${dispos.imagen}" alt="${dispos.nombre} de ${dispos.marca} ">
+        <div class="cardBody">
+        <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
+            <p>Marca: ${dispos.marca}</p>
+            <p>Precios: ${dispos.precio}</p>
+        <button id="agregarbtn${dispos.id}" class="btn btn-outline-success">Agregar al carrito</button>
         </div>
     </div>`
     stockProduc.appendChild(nuevosProductos)
+    let btnAgregar = document.getElementById(`agregarbtn${dispos.id}`)
+    btnAgregar.addEventListener("click", ()=>{
+        console.log(`El producto ${dispos.nombre} de la marca ${dispos.marca}, ha sido cargado correctamente`)
+    })
     }
-}
+    }    
 
 
 mostrarInfoDispo(dispositivos)
 
+
+// DarkMode
+let modoOscuro 
+
+if(localStorage.getItem("modoOscuro")){
+    modoOscuro = localStorage.getItem("modoOscuro")
+}else{
+    localStorage.setItem("modoOscuro", false)
+    modoOscuro = "false"
+}
+
+
+if(modoOscuro == "true"){
+    document.body.classList.add("darkMode")
+}else{
+    document.body.classList.remove("darkMode")
+}
+
+botonDarkMode.addEventListener("click",()=>{
+    document.body.classList.add("darkMode")
+    localStorage.setItem("modoOscuro", true)
+})
+
+botonLightMode.addEventListener("click",()=>{
+    document.body.classList.remove("darkMode")
+    localStorage.setItem("modoOscuro", false)
+})
+
+let eliminarModeBtn = document.getElementById("eliminarMode")
+
+eliminarModeBtn.addEventListener("click",()=> {
+localStorage.removeItem("modoOscuro")
+localStorage.clear()
+})
+
+localStorage.setItem("productoPrimero", JSON.stringify(dispositivos1))
+
+
+let capturarDispo = JSON.parse(localStorage.getItem("productoPrimero"))
+console.log(productoPrimero)
+console.log(dispositivos1)
