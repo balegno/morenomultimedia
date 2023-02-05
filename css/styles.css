@@ -10,10 +10,6 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  background-color: #c0d0ef;
-}
-
 .nav-link {
   background-color: #0f1c30;
   color: aliceblue;
@@ -27,44 +23,55 @@ body {
 .navbar-toggler {
   margin-right: 2rem;
 }
-.navbar-brand {
-  font-size: 3rem;
-}
-
 img {
   max-width: 100%;
 }
 
-h1 {
-  font-size: 4rem;
-  text-align: center;
-  font-family: "Roboto Mono", monospace;
-}
-
-h2 {
-  font-size: 3.5rem;
-  text-align: center;
-  font-family: "Roboto Mono", monospace;
-}
-
-h3 {
-  font-size: 3.5rem;
-  text-align: small;
-  font-family: "Roboto Mono", monospace;
-}
-
 p {
-  font-size: 2rem;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-}
-p .card {
-  font-size: 1rem;
+  color: black;
 }
 
 .darkMode {
   color: white;
   background-color: black;
+}
+.darkMode .card {
+  color: black;
+}
+.darkMode .modal {
+  color: black;
+}
+.darkMode h1 {
+  font-size: 4rem;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  color: white;
+}
+.darkMode h2 {
+  font-size: 3.5rem;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+}
+.darkMode h3 {
+  font-size: 3.5rem;
+  text-align: small;
+  font-family: "Roboto Mono", monospace;
+  color: white;
+}
+.darkMode p {
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+}
+.darkMode .navbar-brand {
+  font-size: 3rem;
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 3rem;
+  color: black;
 }
 
 label {
@@ -79,6 +86,7 @@ legend {
   margin-bottom: 0.5rem;
   font-size: 2.8rem;
   line-height: inherit;
+  text-align: center;
 }
 
 textarea {
@@ -96,8 +104,27 @@ textarea {
 #banner {
   margin: 5rem;
   background-color: #0f1c30;
-  width: 80%;
-  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#datosClientes {
+  background-color: #371c4b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0rem 2rem;
+}
+
+#agregarProd {
+  background-color: #371c4b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0rem 2rem;
 }
 
 #padreProductos {

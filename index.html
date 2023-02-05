@@ -46,7 +46,7 @@
 				</li>
 			</ul>
 			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Aire,Celular,Tablets..." aria-label="Search">
+				<input id="buscador" class="form-control me-2" type="search" placeholder="Aire,Celular,Tablets..." aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">Buscar</button>
 			</form>
 			</div>
@@ -54,7 +54,7 @@
 		</nav>
 </section>
 
-div.container <m-4>
+<div class="container m-4">
 	<div class="row">
 		<div class="col-3">
 			
@@ -72,7 +72,7 @@ div.container <m-4>
 
 		</div>
 	</div>
-</m-4>
+</div>
 
 
 <div id="carouselExample" class="carousel slide">
@@ -113,10 +113,9 @@ div.container <m-4>
 
 
 <div id="banner">
-	<p>banner</p>
-</div>
-
+	<div id="agregarProd">
 <form>
+	<h3>Cargar productos</h3>
 	<div>
 	<label for="nombre">Ingrese nombre:</label>
 	<input type="text" id="nombreInput" name="nombre">
@@ -138,44 +137,53 @@ div.container <m-4>
 	</div>
 </form>
 <button id="guardarProductoBtn" class="btn btn-success">Guardar producto</button>
+</div>
 
-
-
+<div id="datosClientes">
 <fieldset>
 	<legend class="formulario">¿Deseas recibir info de productos?</legend>
-	<div class="formulario">
+	<div>
 		<label for="nombre">Nombre</label>
 		<input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
 	</div>
-	<div class="formulario"></div>
+	<div>
 		<label for="apellido">Apellido</label>
 		<input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
 	</div>
-	<div class="formulario"></div>
+	<div>
 		<label for="email">Email</label>
 		<input type="email" name="email" id="email" placeholder="Email" required>
 	</div>
-	<div class="formulario">
+	<div>
 		<label for="ciudad">Ciudad</label>
 		<input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" required>
 	</div>
 	<div>
 		<p>¿Que info te gustaria recibir?</p>
 	</div>
-	<div id="chekbox">
-		<label for="pc">Computadoras</label>
-		<input type="radio" name="pc" id="pc">
-		<label for="home">SmartHome</label>
-		<input type="radio" name="home" id="home">
-		<label for="phone">Smartphones</label>
-		<input type="radio" name="phone" id="phone">
-		<label for="game">Games</label>
-		<input type="radio" name="game" id="game">
+
+
+	<div id="preferencias">
+		<div>
+			<label for="pc">Computadoras</label>
+			<input type="radio" name="pc" id="pc">
+			<label for="home">SmartHome</label>
+			<input type="radio" name="home" id="home">
+		</div>
+		<div>
+			<label for="phone">Smartphones</label>
+			<input type="radio" name="phone" id="phone">
+			<label for="game">Games</label>
+			<input type="radio" name="game" id="game">
+		</div>
 	</div>
+	
 	<div>
 		<textarea name="comentarios" id="comentario" cols="30" rows="2" maxlength="50" placeholder="Producto de interes"></textarea>
 	</div>
-</fieldset>
+	</fieldset>
+	</div>
+</div>
 
 <!--Script de Bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -186,6 +194,8 @@ div.container <m-4>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
 
 
-<script src="js-basico/valores.js"></script>
+<script src="js-basico/class.js"></script>
+<script src="js-basico/main.js"></script>
+<script src="js-basico/darkMode.js"></script>
 </body>
 </html>

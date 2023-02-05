@@ -11,10 +11,6 @@ html {
 
 // BODY
 
-body{
-    background-color: $bg-body;
-}
-
 .nav-link {
     background-color: $secundario;
     color: aliceblue;
@@ -35,42 +31,55 @@ body{
     }
 
 }
-.navbar-brand{
-    font-size: 3rem;
-}
 
 img{
     max-width: 100%;
 }
-h1{
-    font-size: $fuente-grande;
-    text-align: center;
-    font-family: $fuente-titulo;
+p{
+    color: black
 }
-h2 {
-    font-size: $fuente-mediana;
-    text-align: center;
-    font-family: $fuente-titulo;
-}
-h3 {
-    font-size: $fuente-mediana;
-    text-align: small;
-    font-family: $fuente-titulo;
-}
-p {
-    font-size: $fuente-inter-chica;
-    text-align: center;
-    font-family: $fuente-parrafo;
-    .card{
-        font-size: $fuente-muy-chica;
-    }
-}
-
 .darkMode{
     color:white;
     background-color: black;
-}
+    .card{
+        color: black;
+    }
+    .modal{
+        color: black;
+    }
+    h1{
+        font-size: $fuente-grande;
+        text-align: center;
+        font-family: $fuente-titulo;
+        color: white;
+    }
+    h2 {
+        font-size: $fuente-mediana;
+        text-align: center;
+        font-family: $fuente-titulo;
+    }
+    h3 {
+        font-size: $fuente-mediana;
+        text-align: small;
+        font-family: $fuente-titulo;
+        color: white;
+    }
+    p {
+        font-size: $fuente-inter-chica;
+        text-align: center;
+        font-family: $fuente-parrafo;
+        color: white;
+    }
+    .navbar-brand{
+        font-size: 3rem;
+        color: white;
+    }
 
+}
+.navbar-brand{
+    font-size: 3rem;
+    color: black;
+}
 
 label{
     font-size: $fuente-inter-chica ;
@@ -85,6 +94,7 @@ legend {
     margin-bottom: 0.5rem;
     font-size: 2.8rem;
     line-height: inherit;
+    text-align: center;
 }
 
 textarea{
@@ -119,9 +129,6 @@ textarea{
     
 }
 
-@mixin margin {
-    margin: -6rem 4rem 1rem;
-}
 
 .card{
     margin: 5rem 2rem;
@@ -130,7 +137,26 @@ textarea{
 #banner{
     margin: 5rem;
     background-color: $secundario;
-    width: 80%;
-    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#datosClientes{
+    background-color: #371c4b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0rem 2rem;
+}
+
+#agregarProd{
+    background-color: #371c4b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0rem 2rem;
 }
 
