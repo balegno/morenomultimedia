@@ -48,9 +48,6 @@ const dispositivos15 = new dispo(15,"iPad", "Apple", "9 Gen", 2200, "ipad9.jpg")
 
 //ARRAY
 let dispositivos = []
-if(localStorage.getItem("dispositivos")){
-    dispositivos = JSON.parse(localStorage.getItem("dispositivos"))
-}else{
-    dispositivos.push(dispositivos1, dispositivos2, dispositivos3, dispositivos4, dispositivos5, dispositivos6, dispositivos7, dispositivos8, dispositivos9, dispositivos10, dispositivos11, dispositivos12, dispositivos13, dispositivos14, dispositivos15)
-    localStorage.setItem("dispositivos", JSON.stringify(dispositivos))
-}
+
+localStorage.getItem("dispositivos") ? (dispositivos = JSON.parse(localStorage.getItem("dispositivos"))) : (dispositivos.push(dispositivos1, dispositivos2, dispositivos3, dispositivos4, dispositivos5, dispositivos6, dispositivos7, dispositivos8, dispositivos9, dispositivos10, dispositivos11, dispositivos12, dispositivos13, dispositivos14, dispositivos15)
+, localStorage.setItem("dispositivos", JSON.stringify(dispositivos)))

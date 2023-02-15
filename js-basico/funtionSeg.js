@@ -1,6 +1,26 @@
+function agregarProducto(array){
+    let nombreIngresado = document.getElementById("nombreInput")
+    let marcaIngresada = document.getElementById("marcaInput")
+    let modeloIngrersado = document.getElementById("modeloInput")
+    let precioIngresado = document.getElementById("precioInput")
+
+
+    const produNuevo = new dispo(array.length+1, nombreIngresado.value, marcaIngresada.value, modeloIngrersado.value, precioIngresado.value, "productoNuevo.jpg")
+
+
+    array.push(produNuevo)
+    localStorage.setItem("dispositivos", JSON.stringify(array))
+    mostrarInfoDispo(array)
+
+
+    nombreIngresado.value=""    
+    marcaIngresada.value=""   
+    modeloIngrersado.value=""
+    precioIngresado.value=""
+}
+
 
 function eliminarDispo(array){
-    console.log("Con el catalogo, ingrese el ID que desea eliminar")
     for(let elemOff of array){
         console.log(`${elemOff.id} - ${elemOff.marca} de la marca ${elemOff.producto}`)
     }
@@ -8,7 +28,6 @@ function eliminarDispo(array){
 
     //COPIA DEL ARRAY
     let arrayID = array.map((dispositivos) => dispositivos.id)
-    console.log(arrayID)
     let indice = arrayID.indexOf(idEliminar)
     array.splice(indice, 1)
     verCatalogo(array)
@@ -16,7 +35,6 @@ function eliminarDispo(array){
 
 //VER CATALOGO
 function verCatalogo(array){
-    console.log("Bienvenido! Nuestro catalogo es:")
     array.forEach((dispositivos)=>{
         console.log(dispositivos.id, dispositivos.nombre, dispositivos.marca, dispositivos.modelo, dispositivos.precio)
     })
@@ -29,7 +47,7 @@ function buscarPorMarca(array){
         (buscMarc)=> buscMarc.marca.toLowerCase() == marcaBuscada.toLowerCase()
         )
     if(marcaEncontrada == undefined){
-        console.log(`El producto ${marcaBuscada} no está en stock`)
+        console.log(`No hay stock disponible de ${marcaBuscada}.`)
     }
     else{
         console.log(marcaEncontrada) 
@@ -55,12 +73,12 @@ function ordenarMenorMayor(array){
 }
 function ordenarMayorMenor(arr){
     const mayorMenor = [].concat(arr)
-    mayorMenor.sort((param1, param2)=>{
-        return param2.precio - param1.precio
+    mayorMenor.sort((a1, b2)=>{
+        return b2.precio - a1.precio
     })
     verCatalogo(mayorMenor)
 }
-function ordenarAlfabeticamenteTitulo(array){
+function ordenarAlfabet(array){
     const ordAlfabeticamente = [].concat(array)
     ordAlfabeticamente.sort((a,b) => {
         if(a.nombre > b.nombre) {
@@ -157,4 +175,3 @@ function preguntarOpcion(salir){
     }
     
     // menu()
-                

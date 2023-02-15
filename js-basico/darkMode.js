@@ -1,19 +1,10 @@
 // DarkMode
 let modoOscuro 
 
-if(localStorage.getItem("modoOscuro")){
-    modoOscuro = localStorage.getItem("modoOscuro")
-}else{
-    localStorage.setItem("modoOscuro", false)
-    modoOscuro = "false"
-}
+localStorage.getItem("modoOscuro") ? (modoOscuro = JSON.parse(localStorage.getItem("modoOscuro"))) : (localStorage.setItem("modoOscuro", false)), (modoOscuro = JSON.parse(localStorage.getItem("modoOscro")))
 
 
-if(modoOscuro == "true"){
-    document.body.classList.add("darkMode")
-}else{
-    document.body.classList.remove("darkMode")
-}
+modoOscuro == "true" ? (document.body.classList.add("darkMode")) : (document.body.classList.remove("darkMode"))
 
 botonDarkMode.addEventListener("click",()=>{
     document.body.classList.add("darkMode")
