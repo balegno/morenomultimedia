@@ -80,6 +80,9 @@ function mostrarInfoDispo(array){
 
     }
 
+
+
+
 //FUNCTIONS AGREGAR AL ARRAY
 
 
@@ -151,13 +154,34 @@ function cargarCarrito(array){
         <div class="card-body">
             <h4 class="card-title">${productosAComprar.nombre}</h4>
             <p class="card-text">$${productosAComprar.precio}</p>
-            <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+            <button class= "btn btn-danger" id="botonEliminar${productosAComprar.id}"><i class="fas fa-trash-alt"></i></button>
         </div>
     </div>    
     `
     })
+
+    array.forEach((productosAComprar)=>{
+        document.getElementById(`botonEliminar${productosAComprar.id}`).addEventListener("click", ()=>{
+            let cardCarrito = document.getElementById(`productoCarrito${productosAComprar.id}`)
+            cardCarrito.remove()
+            
+            let productoAEliminar = array.find((dispos)=>dispos.id == productosAComprar.id)
+            console.log(productoAEliminar)
+
+            let lugar = array.indexOf(productoAEliminar)
+            console.log(lugar)
+        
+            array.splice(lugar,1)
+            console.log(array)
+
+            localStorage.setItem("carrito", JSON.stringify(array))
+            calcularCarrito (array)
+        })
+    })
     calcularCarrito (array)
 }
+
+
 
 // EVENTOS
 guardarProductoBtn.addEventListener("click", ()=>{
@@ -192,5 +216,6 @@ botonCarrito.addEventListener("click", ()=>{
 
 function calcularCarrito (array){
     let total =array.reduce((acc, productosComprar)=> acc + productosComprar.precio, 0)
-    precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
+
+    total == 0 ? precioTotal.innerHTML = `No agregaste nungun producto` : precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
 }
