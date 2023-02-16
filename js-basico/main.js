@@ -1,14 +1,16 @@
 // DOM
 let guardarProductoBtn = document.getElementById("guardarProductoBtn")
-let botonLightMode =document.getElementById("botonLightMode")
-let botonDarkMode =document.getElementById("botonDarkMode")
+let botonLightMode = document.getElementById("botonLightMode")
+let botonDarkMode = document.getElementById("botonDarkMode")
 let buscador = document.getElementById("buscador")
 let coincidencia = document.getElementById("coincidencia")
-let selectOrden =document.getElementById("selectOrden")
+let selectOrden = document.getElementById("selectOrden")
 let stockProduc = document.getElementById("padreProductos")
+let botonCarrito = document.getElementById("botonCarrito")
+let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
+let precioTotal = document.getElementById("precioTotal")
 
-
-// mostrar Catalogo
+//Catalogo
 function verCatalogo(array){
     array.forEach(producto => {
         console.log(producto.id, producto.nombre, producto.marca,
@@ -51,9 +53,31 @@ function mostrarInfoDispo(array){
 
     
     function agregarCarrito(dispos){
-    console.log(`El producto ${dispos.nombre} se agrego.`)
-    productosPorComprar.push(dispos)
-    localStorage.setItem("carrito", JSON.stringify(productosPorComprar))
+
+        let productosRepetidos = productosPorComprar.find((prodRepet)=> prodRepet.id == dispos.id)
+        if(productosRepetidos == undefined){
+            productosPorComprar.push(dispos)
+            localStorage.setItem("carrito", JSON.stringify(productosPorComprar))
+        
+            Swal.fire({
+                title: 'Producto agregado',
+                text: `El producto ${dispos.nombre} de la marca ${dispos.marca} se agrego correctamente.`,
+                imageUrl: `assets/${dispos.imagen}`,
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: "green",
+                timer: 3000,
+                imageHeight: 100
+            })
+        }else{
+            Swal.fire({
+                title: `¡Atencion!`,
+                text: `${dispos.nombre} esta repetido`,
+                icon: "warning",
+                timer: 2000
+            })
+        }
+
     }
 
 //FUNCTIONS AGREGAR AL ARRAY
@@ -119,6 +143,21 @@ ordAlfabeticamente.sort((a,b) => {
 mostrarInfoDispo(ordAlfabeticamente)
 }
 
+function cargarCarrito(array){
+    array.forEach((productosAComprar)=>{
+    modalBodyCarrito.innerHTML +=`
+    <div class="card border-primary mb-3" id="productoCarrito${productosAComprar.id}" style="max-width: 540px;">
+        <img class="card-img-top" height="300px" src="assets/${productosAComprar.imagen}" alt="">
+        <div class="card-body">
+            <h4 class="card-title">${productosAComprar.nombre}</h4>
+            <p class="card-text">$${productosAComprar.precio}</p>
+            <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </div>    
+    `
+    })
+    calcularCarrito (array)
+}
 
 // EVENTOS
 guardarProductoBtn.addEventListener("click", ()=>{
@@ -145,3 +184,13 @@ selectOrden.addEventListener("change", ()=>{
     }
 })
 
+botonCarrito.addEventListener("click", ()=>{
+    cargarCarrito(productosPorComprar)
+})
+
+
+
+function calcularCarrito (array){
+    let total =array.reduce((acc, productosComprar)=> acc + productosComprar.precio, 0)
+    precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
+}
