@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "nombre": "Computadora",
+        "marca": "Lenovo",
+        "modelo": "V310",
+        "precio": 9000,
+        "imagen": "lenovoV310.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "iPone",
+        "marca": "Apple",
+        "modelo": "14",
+        "precio": 4500,
+        "imagen": "iphone14.jpg"
+    },
+    {
+        "id":3,
+        "nombre": "iPone",
+        "marca":"Apple",
+        "modelo": 13,
+        "precio": 4300,
+        "imagen":"iphone13.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "iPone",
+        "marca": "Apple",
+        "modelo": "12Pro Max",
+        "precio": 4400,
+        "imagen": "iphone12proMax.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Auricular",
+        "marca": "RedDragon",
+        "modelo": "Zeus",
+        "precio": 860,
+        "imagen": "redDragonZeus.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "Monitor",
+        "marca": "Samsung",
+        "modelo": "As154",
+        "precio": 1900,
+        "imagen": "samsung24.jpg"
+    },
+    {
+        "id": 7,
+        "nombre": "Mouse",
+        "marca": "Logitech",
+        "modelo": "M535",
+        "precio": 800,
+        "imagen": "logiM535"
+    },
+    {
+        "id": 8,
+        "nombre": "Teclado",
+        "marca":  "Logitech",
+        "modelo": "K380",
+        "precio": 1100,
+        "imagen": "logi380.jpg" 
+    },
+    {
+        "id": 9,
+        "nombre": "MakBook",
+        "marca": "Apple",
+        "modelo": "Pro 2016",
+        "precio": 4500,
+        "imagen": "macpro16.jpg"
+    },
+    {
+        "id": 10,
+        "nombre": "MakBook",
+        "marca": "Apple",
+        "modelo": "Pro 2020",
+        "precio": 5000,
+        "imagen": "marpro20.jpg" 
+    },
+    {
+        "id": 11,
+        "nombre": "Monitor",
+        "marca": "Dell",
+        "modelo": "vm5400",
+        "precio": 1850,
+        "imagen": "monitorDell.jpg" 
+    },
+    {
+        "id": 12,
+        "nombre": "Monitor" ,
+        "marca": "Benq",
+        "modelo": "MV5000",
+        "precio": 1800,
+        "imagen": "monitorBenq.jpg" 
+    },
+    {
+        "id": 13,
+        "nombre": "Computadora",
+        "marca": "intel",
+        "modelo": "i7",
+        "precio": 3300,
+        "imagen": "pcIntel7.jpg"
+    },
+    {
+        "id": 14,
+        "nombre": "Computadora",
+        "marca": "intel",
+        "modelo": "i3",
+        "precio": 2200,
+        "imagen": "pdInteli3.jpg" 
+    },
+    {
+        "id": 15,
+        "nombre": "iPad" ,
+        "marca": "Apple",
+        "modelo": "9 Gen",
+        "precio": 2200,
+        "imagen": "ipad9.jpg" 
+    }    
+]

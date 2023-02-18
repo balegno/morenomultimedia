@@ -9,8 +9,9 @@ let stockProduc = document.getElementById("padreProductos")
 let botonCarrito = document.getElementById("botonCarrito")
 let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
 let precioTotal = document.getElementById("precioTotal")
+let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
 
-//Catalogo
+// CATALOGO
 function verCatalogo(array){
     array.forEach(producto => {
         console.log(producto.id, producto.nombre, producto.marca,
@@ -46,7 +47,7 @@ function mostrarInfoDispo(array){
     }    
 
 
-    // Array de productos en carrito
+    // CARRITO
     let productosPorComprar
     localStorage.getItem("carrito") ?
     (productosPorComprar = JSON.parse(localStorage.getItem("carrito"))) : (productosPorComprar= [])
@@ -83,7 +84,7 @@ function mostrarInfoDispo(array){
 
 
 
-//FUNCTIONS AGREGAR AL ARRAY
+// AGREGAR 
 
 
 function agregarProducto(array){
@@ -107,7 +108,6 @@ function agregarProducto(array){
     precioIngresado.value=""
 }
 
-mostrarInfoDispo(dispositivos)
 
 
 function buscarInfo(buscado, array){
@@ -182,6 +182,48 @@ function cargarCarrito(array){
 }
 
 
+function calcularCarrito (array){
+    let total =array.reduce((acc, productosComprar)=> acc + productosComprar.precio, 0)
+
+    total == 0 ? precioTotal.innerHTML = `No agregaste nungun producto` : precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
+}
+
+
+
+function carritoLleno(){
+    Swal.fire({
+        title:`¿Desas finalizar la compra?`,
+        icon: `info`,
+        showCancelButton: true,
+        confirmButtonText: `Si, finalizar!`,
+        cancelButtonText: `No! cancelar!`,
+        confirmButtonColor: `green`,
+        cancelButtonColor: `red`
+
+    }).then((rta)=>{
+        if(rta.isConfirmed){
+            Swal.fire({
+                title: `Compra exitosa`,
+                icon: `success`,
+                confirmButtonColor: `green`,
+                text: `Gracias por comprar! Vuelva pronto.`,
+                timer: 2500
+            })
+            productosAComprar = []
+            localStorage.removeItem("carrito")
+        }else{
+            Swal.fire({
+                title: `Compra Cancelada.`,
+                icon: `info`,
+                text: `Tus productos permanecen en el carrito cuando quieras volver`,
+                confirmButtonColor: `green`,
+                timer: 2500
+            })
+        }
+    }
+    )
+}
+
 
 // EVENTOS
 guardarProductoBtn.addEventListener("click", ()=>{
@@ -211,11 +253,8 @@ selectOrden.addEventListener("change", ()=>{
 botonCarrito.addEventListener("click", ()=>{
     cargarCarrito(productosPorComprar)
 })
+botonFinalizarCompra.addEventListener("click", ()=>{
+    carritoLleno()})
 
 
-
-function calcularCarrito (array){
-    let total =array.reduce((acc, productosComprar)=> acc + productosComprar.precio, 0)
-
-    total == 0 ? precioTotal.innerHTML = `No agregaste nungun producto` : precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
-}
+mostrarInfoDispo(dispositivos)
