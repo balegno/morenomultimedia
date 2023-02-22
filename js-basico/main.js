@@ -48,11 +48,16 @@ function mostrarInfoDispo(array){
 
 
     // CARRITO
-    let productosPorComprar
-    localStorage.getItem("carrito") ?
-    (productosPorComprar = JSON.parse(localStorage.getItem("carrito"))) : (productosPorComprar= [])
+    let productosPorComprar = []
+    if(localStorage.getItem("carrito")){
+        for(let producto of JSON.parse(localStorage.getItem("carrito"))){
+            let productoCarrito = new dispo(producto.id, producto.nombre, producto.marca, producto.modelo, producto.precio, producto.imagen)
+            dispositivos.push(productoCarrito)
+        }
+    }else{
+        productosPorComprar = []
+    }
 
-    
     function agregarCarrito(dispos){
 
         let productosRepetidos = productosPorComprar.find((prodRepet)=> prodRepet.id == dispos.id)

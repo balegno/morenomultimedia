@@ -24,6 +24,8 @@ class dispo {
 }
 
 
+
+
 //INSTANCIACION DE OBJETOS- ESCRIBIR EN ORDEN
 
 // const dispositivos1 = new dispo(1,"Computadora","Lenovo", "V310", 9000, "lenovoV310.jpg")
@@ -60,6 +62,8 @@ class dispo {
 //ARRAY
 let dispositivos = []
 
+
+
 const cargarProductos = async ()=>{
     const response = await fetch("productos.json")
     const data = await response.json()
@@ -68,15 +72,17 @@ const cargarProductos = async ()=>{
         let productoJson = new dispo(producto.id, producto.nombre, producto.marca, producto.modelo, producto.precio, producto.imagen)
         dispositivos.push(productoJson)
     }
+//     localStorage.setItem("productos", JSON.stringify(productos))
 }
 
 
 if(localStorage.getItem("dispositivos")){
 
-for(let producto of JSON.parse(localStorage.getItem)){
+for(let producto of JSON.parse(localStorage.getItem("dispositivos"))){
     let productoJson = new dispo(producto.id, producto.nombre, producto.marca, producto.modelo, producto.precio, producto.imagen)
-    dispositivos.push(productoJson)
-}
-cargarProductos()
+    dispositivos.push(productoJson)}
+
 }else{
-localStorage.setItem("dispositivos", JSON.stringify(dispositivos))}
+    localStorage.setItem("dispositivos", JSON.stringify(dispositivos))
+    cargarProductos()
+}
