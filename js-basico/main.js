@@ -1,4 +1,5 @@
 // DOM
+let productos = document.getElementById("productos")
 let guardarProductoBtn = document.getElementById("guardarProductoBtn")
 let botonLightMode = document.getElementById("botonLightMode")
 let botonDarkMode = document.getElementById("botonDarkMode")
@@ -11,6 +12,7 @@ let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
 let precioTotal = document.getElementById("precioTotal")
 let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
 
+
 // CATALOGO
 function verCatalogo(array){
     array.forEach(producto => {
@@ -22,53 +24,54 @@ function verCatalogo(array){
 function mostrarInfoDispo(array){
     stockProduc.innerHTML =""
 
-
     for(let dispos of array){
         let nuevosProductos = document.createElement("div")
         
-        nuevosProductos.classList.add("col-12","col-md-6", "col-lg-4")
-        nuevosProductos.innerHTML = 
-        `<div id="${dispos.id}" class="card" alt="" style="height: 416px; width: 252px;">
-        <img src="assets/${dispos.imagen}" alt="${dispos.nombre} de ${dispos.marca} ">
-        <div class="cardBody">
-        <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
-            <p>Marca: ${dispos.marca}</p>
-            <p>Precios: ${dispos.precio}</p>
-        <button id="agregarBtn${dispos.id}" class="btn btn-outline-success">Agregar al carrito</button>
-        </div>
-    </div>`
-    stockProduc.appendChild(nuevosProductos)
+            nuevosProductos.classList.add("col-12","col-md-6", "col-lg-4")
+            nuevosProductos.innerHTML = 
+            `<div id="${dispos.id}" class="card" alt="" style="height: 416px; width: 252px;">
+            <img src="assets/${dispos.imagen}" alt="${dispos.nombre} de ${dispos.marca} ">
+            <div class="cardBody">
+            <h4 class="cardTitle">${dispos.nombre} ${dispos.modelo}</h4>
+                <p>Marca: ${dispos.marca}</p>
+                <p>Precios: ${dispos.precio}</p>
+            <button id="agregarBtn${dispos.id}" class="btn btn-outline-success">Agregar al carrito</button>
+            </div>
+        </div>`
+        productos.appendChild(nuevosProductos)
 
-    let btnAgregar = document.getElementById(`agregarBtn${dispos.id}`)
-    btnAgregar.addEventListener("click", ()=>{
-        agregarCarrito(dispos)
-    })
-    }
+        let btnAgregar = document.getElementById(`agregarBtn${dispos.id}`)
+        // btnAgregar.addEventListener("click", ()=>{
+            // agregarCarrito(dispos)
+            // })
+        }
     }    
 
 
     // CARRITO
     let productosPorComprar = []
     if(localStorage.getItem("carrito")){
-        for(let producto of JSON.parse(localStorage.getItem("carrito"))){
-            let productoCarrito = new dispo(producto.id, producto.nombre, producto.marca, producto.modelo, producto.precio, producto.imagen)
-            dispositivos.push(productoCarrito)
+        for(let dispo of JSON.parse(localStorage.getItem("carrito"))){
+            let cantStronge = dispo.cantidad
+            let productoCarrito = new Dispo(dispo.id, dispo.nombre, dispo.marca, dispo.modelo, dispo.precio, dispo.imagen)
+            productoCarrito.cantidad = cantStronge
+            productosPorComprar.push(productoCarrito)
         }
     }else{
         productosPorComprar = []
     }
 
-    function agregarCarrito(dispos){
+    function agregarCarrito(dispo){
 
-        let productosRepetidos = productosPorComprar.find((prodRepet)=> prodRepet.id == dispos.id)
+        let productosRepetidos = productosPorComprar.find((prodRepet)=> prodRepet.id == dispo.id)
         if(productosRepetidos == undefined){
-            productosPorComprar.push(dispos)
+            productosPorComprar.push(dispo)
             localStorage.setItem("carrito", JSON.stringify(productosPorComprar))
         
             Swal.fire({
                 title: 'Producto agregado',
-                text: `El producto ${dispos.nombre} de la marca ${dispos.marca} se agrego correctamente.`,
-                imageUrl: `assets/${dispos.imagen}`,
+                text: `El producto ${dispo.nombre} de la marca ${dispo.marca} se agrego correctamente.`,
+                imageUrl: `assets/${dispo.imagen}`,
                 icon: 'success',
                 confirmButtonText: 'Ok',
                 confirmButtonColor: "green",
@@ -78,7 +81,7 @@ function mostrarInfoDispo(array){
         }else{
             Swal.fire({
                 title: `¡Atencion!`,
-                text: `${dispos.nombre} esta repetido`,
+                text: `${dispo.nombre} esta repetido`,
                 icon: "warning",
                 timer: 2000
             })
@@ -99,7 +102,7 @@ function agregarProducto(array){
     let precioIngresado = document.getElementById("precioInput")
 
 
-    const produNuevo = new dispo(array.length+1, nombreIngresado.value, marcaIngresada.value, modeloIngrersado.value, precioIngresado.value, "productoNuevo.jpg")
+    const produNuevo = new Dispo(array.length+1, nombreIngresado.value, marcaIngresada.value, modeloIngrersado.value, precioIngresado.value, "productoNuevo.jpg")
 
 
     array.push(produNuevo)
@@ -120,7 +123,9 @@ function buscarInfo(buscado, array){
         (producto)=> producto.nombre.toLowerCase().includes(buscado.toLowerCase()) || producto.marca.toLowerCase().includes(buscado.toLowerCase())
     )
         buscarDispositivos.length == 0 ? (coincidencia.innerHTML = `<h3>Producto no encontrado</h3>`
-        , mostrarInfoDispo(buscarDispositivos)) : (coincidencia.innerHTML ="" ,
+        , mostrarInfoDispo(buscarDispositivos)) 
+        :
+        (coincidencia.innerHTML ="" ,
         mostrarInfoDispo(buscarDispositivos)) 
 }
 
@@ -152,15 +157,32 @@ mostrarInfoDispo(ordAlfabeticamente)
 }
 
 function cargarCarrito(array){
+    modalBodyCarrito.innerHTML =""
     array.forEach((productosAComprar)=>{
+    
+
     modalBodyCarrito.innerHTML +=`
     <div class="card border-primary mb-3" id="productoCarrito${productosAComprar.id}" style="max-width: 540px;">
         <img class="card-img-top" height="300px" src="assets/${productosAComprar.imagen}" alt="">
         <div class="card-body">
             <h4 class="card-title">${productosAComprar.nombre}</h4>
             <p class="card-text">$${productosAComprar.precio}</p>
-            <button class= "btn btn-danger" id="botonEliminar${productosAComprar.id}"><i class="fas fa-trash-alt"></i></button>
-        </div>
+
+            <p class="card-text">Total de unidades: ${productosAComprar.cantidad}
+            </p>
+            
+            <p class="card-text">SubTotal: ${productosAComprar.precio * productosAComprar.cantidad}
+            </p>
+
+            <button class= "btn btn-success" id="botonSumarUnidad${productosAComprar.id}"><i class="">
+            
+            <button class= "btn btn-danger" id="botonEliminarUnidad${productosAComprar.id}"><i class=""></i>-1
+            </button>
+            
+            <button class= "btn btn-danger" id="botonEliminar${productosAComprar.id}"><i class="fas fa-trash-alt"></i>
+            </button>
+        
+            </div>
     </div>    
     `
     })
@@ -182,16 +204,47 @@ function cargarCarrito(array){
             localStorage.setItem("carrito", JSON.stringify(array))
             calcularCarrito (array)
         })
+
+        // SUMAR 
+        document.getElementById(`botonSumarUnidad${productosAComprar.id}`).addEventListener("click", ()=>{
+            productosAComprar.sumarUnidad()
+            localStorage.setItem("carrito", JSON.stringify(array))
+            cargarCarrito(array)
+        })
+        
+        // Eliminar
+
+        document.getElementById(`botonEliminarUnidad${productosAComprar.id}`).addEventListener("click",()=>{
+            let eliminar = productosAComprar.restarUnidad()
+            if(eliminar <1){
+                let cardProducto = document.getElementById(`productoCarrito${productosAComprar.id}`)
+                cardProducto.remove()
+            
+                let productoEliminar = array.find((dispos)=>dispos.id ==productosAComprar.id)
+
+                let posicion = array.indexOf(productoEliminar)
+                
+                array.splice(posicion,1)
+                
+                localStorage.setItem("carrito", JSON.stringify(array))
+                
+                calcularTotal(array)
+            }else{
+                localStorage.setItem("carrito", JSON.stringify(array))
+            }
+            cargarProductosCarrito(array)
+        })
     })
-    calcularCarrito (array)
+    calcularCarrito(array)
 }
 
+        function calcularCarrito (array){
+            let total =array.reduce((acc, productosComprar)=> acc + (productosComprar.precio * productosComprar.cantidad), 0)
+        
+            total == 0 ? precioTotal.innerHTML = `No agregaste nungun producto` : precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
 
-function calcularCarrito (array){
-    let total =array.reduce((acc, productosComprar)=> acc + productosComprar.precio, 0)
-
-    total == 0 ? precioTotal.innerHTML = `No agregaste nungun producto` : precioTotal.innerHTML = `Total del carrito: <strong>$${total}</strong>`
-}
+            return total
+        }
 
 
 
@@ -228,6 +281,9 @@ function carritoLleno(){
     }
     )
 }
+
+// document.getElementById(`botonEliminar`)
+
 
 
 // EVENTOS
