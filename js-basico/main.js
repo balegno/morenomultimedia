@@ -260,14 +260,15 @@ function carritoLleno(){
 
     }).then((rta)=>{
         if(rta.isConfirmed){
+            let finalizarTotal = calcularCarrito(productosPorComprar)
             Swal.fire({
                 title: `Compra exitosa`,
                 icon: `success`,
                 confirmButtonColor: `green`,
-                text: `Gracias por comprar! Vuelva pronto.`,
+                text: `El total es de ${finalizarTotal}. Gracias por comprar! Vuelva pronto.`,
                 timer: 2500
             })
-            productosAComprar = []
+            productosPorComprar = []
             localStorage.removeItem("carrito")
         }else{
             Swal.fire({
